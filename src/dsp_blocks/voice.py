@@ -8,7 +8,7 @@ from ..core.stems import StemId
 from ..core.types import AudioBlock
 from .envelope import IEnvelopeLUT
 from .exciter_base import IExciter
-from .resonator import IResonatorBank, ResonatorBankConfig
+from .resonator import IResonator, ResonatorParams
 
 
 @dataclass(frozen=True)
@@ -20,7 +20,7 @@ class VoiceStartPayload:
 
     exciter_config: object
     exciter_assets: object
-    resonator_config: ResonatorBankConfig
+    resonator_params: ResonatorParams
     out_env: Optional[IEnvelopeLUT] = None
 
 
@@ -42,13 +42,13 @@ class IStemVoice(ABC):
 
 
 class StemVoice(IStemVoice):
-    """Voice genérica por stem: Exciter -> ResonatorBank -> outEnv opcional."""
+    """Voice genérica por stem: Exciter -> Resonator -> outEnv opcional."""
 
     def __init__(
         self,
         stem: StemId,
         exciter: IExciter,
-        resonator: IResonatorBank,
+        resonator: IResonator,
         max_block_size: int,
     ) -> None:
         self._stem = stem
@@ -73,7 +73,7 @@ class StemVoice(IStemVoice):
         self._env_phase = 0
 
     def start(self, payload: VoiceStartPayload) -> None:
-        self._resonator.set_config(payload.resonator_config)
+        self._resonator.set_params(payload.resonator_params)
         self._out_env = payload.out_env
         self._env_phase = 0
 
