@@ -3,8 +3,8 @@ from __future__ import annotations
 """Resonador (único) por stem.
 
 Decisión de arquitectura:
-- 1 Voice por Stem.
-- 1 Resonator por Voice (no banco).
+- 1 Voice por Stem
+- 1 Resonator por Voice
 
 Este módulo fija el contrato y deja un esqueleto de implementación.
 La implementación DSP real (biquad/resonator 2º orden) se añadirá en una fase posterior.

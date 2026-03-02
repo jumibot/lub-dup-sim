@@ -22,7 +22,6 @@ El DSP está diseñado bajo los siguientes principios:
 -   Interfaces pequeñas y testeables.
 -   Portabilidad futura a C / ESP32.
 
-------------------------------------------------------------------------
 
 ## 2. Arquitectura General
 
@@ -34,7 +33,6 @@ Cada stem tiene exactamente:
 
 Exciter → Resonator → OutEnvelope (opcional)
 
-------------------------------------------------------------------------
 
 ## 3. Core
 
@@ -50,7 +48,6 @@ Responsabilidades: - clear_all(nFrames) - buffer(stem)
 
 No realiza mezcla.
 
-------------------------------------------------------------------------
 
 ### 3.3 IDspStemGenerator
 
